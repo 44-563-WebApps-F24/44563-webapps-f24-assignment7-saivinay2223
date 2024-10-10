@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang>
+<head>
+    <title>vinaybikki Goes on Safari</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #game-field {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .row {
+            display: flex;
+        }
+        .row img {
+            width: 80px;
+            height: 80px;
+            margin: 5px;
+        }
+        #locations, #score, #help {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>vinaybikki Goes on Safari</h1>
+    <div>Click on the locations to find rare animals, watch out for the lion.</div>
+    <div id="locations">Number of locations checked is zero.</div>
+    <div id="score">Score is zero.</div>
+    <div id="help">Help report</div> 
+    <div id="game-field">
+        <div id="row1" class="row">
+            <img src="tree.jpg" id="img0" onclick="check(0)">
+            <img src="tree.jpg" id="img1" onclick="check(1)">
+            <img src="tree.jpg" id="img2" onclick="check(2)">
+            <img src="tree.jpg" id="img3" onclick="check(3)">
+            <img src="tree.jpg" id="img4" onclick="check(4)">
+            <img src="tree.jpg" id="img5" onclick="check(5)">
+        </div>
+        <div id="row2" class="row">
+            <img src="tree.jpg" id="img6" onclick="check(6)">
+            <img src="tree.jpg" id="img7" onclick="check(7)">
+            <img src="tree.jpg" id="img8" onclick="check(8)">
+            <img src="tree.jpg" id="img9" onclick="check(9)">
+            <img src="tree.jpg" id="img10" onclick="check(10)">
+            <img src="tree.jpg" id="img11" onclick="check(11)">
+        </div>
+        <div id="row3" class="row">
+            <img src="tree.jpg" id="img12" onclick="check(12)">
+            <img src="tree.jpg" id="img13" onclick="check(13)">
+            <img src="tree.jpg" id="img14" onclick="check(14)">
+            <img src="tree.jpg" id="img15" onclick="check(15)">
+            <img src="tree.jpg" id="img16" onclick="check(16)">
+            <img src="tree.jpg" id="img17" onclick="check(17)">
+        </div>
+        <div id="row4" class="row">
+            <img src="tree.jpg" id="img18" onclick="check(18)">
+            <img src="tree.jpg" id="img19" onclick="check(19)">
+            <img src="tree.jpg" id="img20" onclick="check(20)">
+            <img src="tree.jpg" id="img21" onclick="check(21)">
+            <img src="tree.jpg" id="img22" onclick="check(22)">
+            <img src="tree.jpg" id="img23" onclick="check(23)">
+        </div>
+        <div id="row5" class="row">
+            <img src="tree.jpg" id="img24" onclick="check(24)">
+            <img src="tree.jpg" id="img25" onclick="check(25)">
+            <img src="tree.jpg" id="img26" onclick="check(26)">
+            <img src="tree.jpg" id="img27" onclick="check(27)">
+            <img src="tree.jpg" id="img28" onclick="check(28)">
+            <img src="tree.jpg" id="img29" onclick="check(29)">
+        </div>
+        <div id="row6" class="row">
+            <img src="tree.jpg" id="img30" onclick="check(30)">
+            <img src="tree.jpg" id="img31" onclick="check(31)">
+            <img src="tree.jpg" id="img32" onclick="check(32)">
+            <img src="tree.jpg" id="img33" onclick="check(33)">
+            <img src="tree.jpg" id="img34" onclick="check(34)">
+            <img src="tree.jpg" id="img35" onclick="check(35)">
+        </div>
+    </div>
+    <script>
+        let score = 0;
+        let locationsChecked = 0;
+        const zebraLocations = [1, 8, 12, 22, 34];
+        const lionLocation = 14;
+        let gameOver = false;
+        function check(position) {
+            if (gameOver) return;          
+            const imgElement = document.getElementById('img' + position);
+            if (position === lionLocation) {
+                imgElement.src = 'lion.png';
+                gameOver = true;
+                score -= 2;
+                document.getElementById('score').innerHTML = 'Score is ' + score;
+                document.getElementById('locations').innerHTML = 'Game Over! Lion found!';
+            } 
+            else if (zebraLocations.includes(position)) {
+                imgElement.src = 'zebra.png';
+                score += 4;
+            } 
+            else {
+                imgElement.src = 'elephant.png';
+                score += 1;
+            }
+            locationsChecked++;
+            document.getElementById('locations').innerHTML = 'Number of locations checked is ' + locationsChecked;
+            document.getElementById('score').innerHTML = 'Score is ' + score;
+        }
+    </script>
+</body>
+</html>
+
