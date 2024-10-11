@@ -90,18 +90,18 @@
             if (gameOver) return;          
             const imgElement = document.getElementById('img' + position);
             if (position === lionLocation) {
-                imgElement.src = 'lion.png';
+                imgElement.src = 'lion.jpg';
                 gameOver = true;
                 score -= 2;
                 document.getElementById('score').innerHTML = 'Score is ' + score;
                 document.getElementById('locations').innerHTML = 'Game Over! Lion found!';
             } 
             else if (zebraLocations.includes(position)) {
-                imgElement.src = 'zebra.png';
+                imgElement.src = 'zebra.jpg';
                 score += 4;
             } 
             else {
-                imgElement.src = 'elephant.png';
+                imgElement.src = 'elephant.jpg';
                 score += 1;
             }
             locationsChecked++;
