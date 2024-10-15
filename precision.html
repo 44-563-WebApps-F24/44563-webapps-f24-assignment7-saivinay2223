@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Name Speed Check</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #target, #counter {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Name Speed Check</h1>
+    <div id="target">Your time: N/A</div>
+    <div id="counter">Count: 0</div>
+    <button id="startBtn">Start Timer</button>
+    <button id="stopBtn">Stop Timer</button>
+    <script>
+        let stopTime = undefined;
+        let countdownInterval;
+        function recordTime() {
+            stopTime = Date.now(); 
+            console.log("Stop time:", stopTime);  
+        }
+        function startCountdown() {
+            let counterElement = document.getElementById('counter');
+            let targetElement = document.getElementById('target');
+            let timeLeft = 10;  
+            countdownInterval = setInterval(function() {
+                timeLeft--; 
+                counterElement.textContent = `Count: ${timeLeft}`;  
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);  
+                    targetElement.textContent = "Time's up! You missed it!";
+                }
+            }, 1000);  
+        }
+        document.getElementById('startBtn').onclick = function() {
+            clearInterval(countdownInterval);  
+            document.getElementById('counter').textContent = "Count: 10";  
+            document.getElementById('target').textContent = "Your time: N/A";  
+            stopTime = undefined;  
+            startCountdown();  
+        };
+        document.getElementById('stopBtn').onclick = function() {
+            recordTime();  
+            if (stopTime !== undefined && countdownInterval !== undefined) {
+                clearInterval(countdownInterval);  
+                let currentTime = Date.now();
+                let targetElement = document.getElementById('target');
+                let timeTaken = 10 - ((currentTime - stopTime) / 1000).toFixed(2); 
+                targetElement.textContent = `Your time: ${timeTaken}s`;
+            }
+        };
+    </script>
+</body>
+</html>
