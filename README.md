@@ -2,6 +2,6 @@
 # WebApps-F24-Assignment-7
 Assignment 7 on DOM
 Hosted at:
-- [Safari Game](https://github.com/44-563-WebApps-F24/44-563-webapps-f24-classroom-af964a-44563-webapps-f24-assignment7-WebApps-F24-Assignment-7/safari.html)
-- [Speed Check](https://github.com/44-563-WebApps-F24/44563-webapps-f24-assignment7-saivinay2223/precision.html)
-- [Div List](https://github.com/44-563-WebApps-F24/44563-webapps-f24-assignment7-saivinay2223/divlist.html)
+- [Safari Game](https://github.com/44-563-WebApps-F24/44563-webapps-f24-assignment7-saivinay2223/settings/safari.html)
+- [Speed Check](https://github.com/44-563-WebApps-F24/44563-webapps-f24-assignment7-saivinay2223/settings/precision.html)
+- [Div List](https://github.com/44-563-WebApps-F24/44563-webapps-f24-assignment7-saivinay2223/settings/divlist.html)
