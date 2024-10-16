@@ -78,8 +78,10 @@
         let zebraLocations = [];  
         let lionLocation = null;  
         let gameOver = false;
+
+        // Function to randomize lion and zebra positions
         function randomizePositions() {
-            lionLocation = Math.floor(Math.random() * 36);
+            lionLocation = Math.floor(Math.random() * 36);  // Randomize lion position
             while (zebraLocations.length < 3) {
                 let randPos = Math.floor(Math.random() * 36);
                 if (randPos !== lionLocation && !zebraLocations.includes(randPos)) {
@@ -87,27 +89,62 @@
                 }
             }
         }
+
+        // Function to move the lion after each player click
+        function moveLion() {
+            const directions = [-1, 1, -6, 6]; // Left, Right, Up, Down (grid is 6x6)
+            const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+            const newLionLocation = lionLocation + randomDirection;
+
+            // Check if the new lion location is within bounds (0 to 35)
+            if (newLionLocation >= 0 && newLionLocation < 36) {
+                // Clear previous lion position (set it back to tree)
+                document.getElementById(`pos${lionLocation}`).src = 'tree.jpg';
+                lionLocation = newLionLocation;
+            }
+        }
+
+        // Function to handle player's move and check game state
         function check(position) {
-            if (gameOver) return;  
+            if (gameOver) return;  // Do nothing if the game is over
+
             locationsVisited++;
             document.getElementById('locations').textContent = `Number of locations checked is ${locationsVisited}`;
+
             if (position === lionLocation) {
                 document.getElementById(`pos${position}`).src = 'lion.jpg';
                 gameOver = true;
-                alert("Game Over! You found the lion!");
+                alert("Game Over! The lion caught you!");
             } else if (zebraLocations.includes(position)) {
                 document.getElementById(`pos${position}`).src = 'zebra.jpg';
                 score += 10;
+                zebraLocations = zebraLocations.filter(z => z !== position); // Remove zebra from the list
             } else {
                 document.getElementById(`pos${position}`).src = 'elephant.jpg';
                 score += 5;
             }
+
             document.getElementById('score').textContent = `Score is ${score}`;
+
+            // After each player move, move the lion
+            moveLion();
+
+            // Check if lion catches a zebra after moving
+            if (zebraLocations.includes(lionLocation)) {
+                zebraLocations = zebraLocations.filter(z => z !== lionLocation);
+                console.log("Lion caught a zebra at:", lionLocation);
+            }
+
+            // The lion image is only displayed when the lion is clicked, not when an elephant is found
+            // No need to update lion image here
         }
+
+        // Help function
         function help() {
             document.getElementById('help').textContent = 'Lion is nearby!';
         }
-        randomizePositions();
+
+        randomizePositions(); // Randomize positions for the game
     </script>
 </body>
 </html>
