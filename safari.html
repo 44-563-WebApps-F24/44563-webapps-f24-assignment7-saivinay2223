@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>vinaybikki Goes on Safari</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name Goes on Safari</title>
     <style>
         body {
             display: flex;
@@ -15,7 +17,7 @@
         #game-grid {
             display: grid;
             grid-template-columns: repeat(6, 100px);  
-            grid-gap: 10px;
+            grid-gap: 10px;  
         }
         img {
             width: 100px;
@@ -27,7 +29,7 @@
     </style>
 </head>
 <body>
-    <h1>vinatbikki Goes on Safari</h1>
+    <h1>Your Name Goes on Safari</h1>
     <p>Click on the locations to find rare animals, watch out for the lion.</p>
     <p id="locations">Number of locations checked is zero.</p>
     <p id="score">Score is zero.</p>
@@ -75,9 +77,18 @@
         let ids = Array.from({ length: 36 }, (_, i) => i);  
         let score = 0;
         let locationsVisited = 0;
-        let zebraLocations = [1, 9, 17];  
-        let lionLocation = 24;  
+        let zebraLocations = [];  
+        let lionLocation = null;  
         let gameOver = false;
+        function randomizePositions() {
+            lionLocation = Math.floor(Math.random() * 36);
+            while (zebraLocations.length < 3) {
+                let randPos = Math.floor(Math.random() * 36);
+                if (randPos !== lionLocation && !zebraLocations.includes(randPos)) {
+                    zebraLocations.push(randPos);
+                }
+            }
+        }
         function check(position) {
             if (gameOver) return;  
             locationsVisited++;
@@ -98,6 +109,7 @@
         function help() {
             document.getElementById('help').textContent = 'Lion is nearby!';
         }
+        randomizePositions();
     </script>
 </body>
 </html>
