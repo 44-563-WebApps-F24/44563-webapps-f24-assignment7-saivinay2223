@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name Builds List with Divs</title>
+    <title>vinaybikki Builds List with Divs</title>
     <style>
         .flex-container {
             display: flex;
@@ -18,32 +16,40 @@
     </style>
 </head>
 <body>
-    <h1>Your Name Builds List with Divs</h1>
-
-    <!-- Input to add new items to the list -->
+    <h1>vinaybikki Builds List with Divs</h1>
     <input type="text" id="inputValue" placeholder="Enter item">
     <button id="addEndButton">Add end</button>
-
-    <!-- Flex container to hold div list items -->
+    <button id="addFrontButton">Add front</button>
+    <button id="removeButton">Remove middle</button>
     <div class="flex-container" id="listContainer"></div>
-
     <script>
-        // Function to add items at the end of the list
         document.getElementById('addEndButton').onclick = function() {
-            // Get the value from the input element
             const inputValue = document.getElementById('inputValue').value;
-            
-            if (inputValue.trim() !== "") {  // Check if input is not empty
-                // Create a new div element for the list item
+            if (inputValue.trim() !== "") {
                 const newDiv = document.createElement('div');
-                newDiv.className = 'divlist';  // Add class 'divlist'
-                newDiv.innerHTML = inputValue;  // Set the innerHTML to input value
-
-                // Append the new div to the end of the container
+                newDiv.className = 'divlist';
+                newDiv.innerHTML = inputValue;
                 document.getElementById('listContainer').appendChild(newDiv);
-
-                // Clear the input after adding
                 document.getElementById('inputValue').value = '';
+            }
+        };
+        document.getElementById('addFrontButton').onclick = function() {
+            const inputValue = document.getElementById('inputValue').value;
+            if (inputValue.trim() !== "") {
+                const newDiv = document.createElement('div');
+                newDiv.className = 'divlist';
+                newDiv.innerHTML = inputValue;
+                const container = document.getElementById('listContainer');
+                container.insertBefore(newDiv, container.firstChild);
+                document.getElementById('inputValue').value = '';
+            }
+        };
+        document.getElementById('removeButton').onclick = function() {
+            const divListItems = document.getElementsByClassName('divlist');
+            const length = divListItems.length;
+            if (length > 0) {
+                const middleIndex = Math.floor(length / 2);
+                divListItems[middleIndex].remove();
             }
         };
     </script>
